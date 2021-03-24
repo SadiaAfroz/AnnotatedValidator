@@ -8,6 +8,7 @@
 
 .idea
 .gradle
+gradlew*
 
 gradle/
 out/
