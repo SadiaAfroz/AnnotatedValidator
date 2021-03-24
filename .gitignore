@@ -8,6 +8,8 @@
 
 .idea
 *.gradle
+\!build!.gradle
+
 gradlew*
 
 gradle/
