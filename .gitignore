@@ -9,11 +9,11 @@
 .idea
 
 #Gradle
-/settings.gradle
+
 gradlew*
 .gradle/
 gradle/
-
+/settings.gradle
 
 out/
 build/
