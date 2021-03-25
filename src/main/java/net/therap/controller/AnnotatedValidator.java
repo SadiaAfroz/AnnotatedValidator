@@ -31,7 +31,7 @@ public class AnnotatedValidator {
                     }
                     String outputMessage = size.message().replaceAll("\\{min\\}", Integer.toString(size.min())).replaceAll("\\{max\\}",
                             Integer.toString(size.max()));
-                    if (checkValue <= size.min() || checkValue >= size.max()) {
+                    if (checkValue < size.min() || checkValue > size.max()) {
                         ValidationError validationError = new ValidationError(field.getName(), field.getType().getSimpleName(), outputMessage);
                         errors.add(validationError);
                     }
