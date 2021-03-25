@@ -5,7 +5,7 @@ plugins {
 
 mainClassName = 'net.therap.Validator'
 
-group 'org.example'
+group 'net.therap'
 version '1.0-SNAPSHOT'
 
 repositories {

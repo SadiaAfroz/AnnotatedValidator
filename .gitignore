@@ -7,11 +7,14 @@
 *.iml
 
 .idea
-*.gradle
-\!build!.gradle
 
+#Gradle
+/settings.gradle
 gradlew*
-
+.gradle/
 gradle/
+
+
 out/
 build/
+test/
