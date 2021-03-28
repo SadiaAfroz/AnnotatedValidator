@@ -2,6 +2,7 @@ package net.therap;
 
 import net.therap.controller.AnnotatedValidator;
 import net.therap.model.Person;
+import net.therap.model.Summary;
 import net.therap.model.ValidationError;
 
 import java.util.ArrayList;
@@ -13,9 +14,12 @@ import java.util.List;
  */
 public class Validator {
     public static void main(String[] args) {
-        Person p = new Person("Abc Efghjkl", 5);
+        int[] k = {1, 3, 4, 5, 7};
+        Person p = new Person("Abc Efghjkl", 9);
+        Summary summary = new Summary(2, p);
         List<ValidationError> errors = new ArrayList<>();
-        AnnotatedValidator.validate(p, errors);
+        AnnotatedValidator.validate(summary, errors);
         AnnotatedValidator.print(errors);
+
     }
 }
