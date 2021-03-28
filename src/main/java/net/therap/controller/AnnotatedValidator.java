@@ -1,10 +1,13 @@
 package net.therap.controller;
 
+import net.therap.model.PersonValidator;
 import net.therap.model.Size;
 import net.therap.model.ValidationError;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -28,12 +31,13 @@ public class AnnotatedValidator {
                         printClass(field.getAnnotation(Size.class), value, field, errors);
                     } else {
                         Object[] containedValues = null;
-                        if (value instanceof Collection)
+                        if (value instanceof Collection) {
                             containedValues = ((Collection) value).toArray();
-                        else if (value instanceof Map)
+                        } else if (value instanceof Map) {
                             containedValues = ((Map) value).values().toArray();
-                        else if (value instanceof Object[])
+                        } else if (value instanceof Object[]) {
                             containedValues = (Object[]) value;
+                        }
 
                         if (containedValues != null) {
                             // /only primitives
@@ -64,17 +68,18 @@ public class AnnotatedValidator {
         } else if (c.equals(String.class)) {
             checkValue = ((String) value).length();
         } else if (!c.isPrimitive()) {
-            for (Field field : c.getDeclaredFields()) {
-                field.setAccessible(true);
-                try {
-                    Object childField = field.get(value);
-                    printClass(annotation, childField, field, errors);
+            try {
+                Method sizeValueValidator = size.validatorClass().getMethod("getSizeValue", c);
+                PersonValidator instance = new PersonValidator();
+                checkValue = (Integer) sizeValueValidator.invoke(instance, value);
 
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
-            return;
         }
         String outputMessage = size.message().replaceAll("\\{min\\}", Integer.toString(size.min())).replaceAll("\\{max\\}",
                 Integer.toString(size.max()));

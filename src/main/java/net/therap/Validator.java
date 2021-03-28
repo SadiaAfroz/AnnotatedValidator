@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class Validator {
     public static void main(String[] args) {
-        int[] k = {1, 3, 4, 5, 7};
         Person p = new Person("Abc Efghjkl", 9);
         Summary summary = new Summary(2, p);
         List<ValidationError> errors = new ArrayList<>();

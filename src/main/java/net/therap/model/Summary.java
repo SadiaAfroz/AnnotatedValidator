@@ -1,8 +1,6 @@
 package net.therap.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,18 +8,19 @@ import java.util.Map;
  * @since 3/27/21
  */
 public class Summary {
-    @Size(min = 1000)
+    @Size(min = 1000, max = 50000)
     private int salary;
 
     @Size(min = 3, max = 5)
     private Map<Integer, String> check;
 
-    @Size(min = 5, max = 8)
+    @Size(min = 5, max = 8, validatorClass = PersonValidator.class)
     private Person person;
 
     public Summary(int salary, Person person) {
         this.salary = salary;
         this.person = person;
+        check = new HashMap<>();
         check = new HashMap<>();
         check.put(9, "kkkkkkkk");
         check.put(8, "oo");

@@ -18,4 +18,6 @@ public @interface Size {
     int max() default 100;
 
     String message() default "Length must be {min}-{max}";
+
+    Class validatorClass() default Integer.class;
 }
