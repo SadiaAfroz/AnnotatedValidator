@@ -21,10 +21,8 @@ public class Summary {
         this.salary = salary;
         this.person = person;
         check = new HashMap<>();
-        check = new HashMap<>();
-        check.put(9, "kkkkkkkk");
-        check.put(8, "oo");
-
+        check.put(2, "lead");
+        check.put(6, "training");
     }
 
     public int getSalary() {
